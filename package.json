@@ -1,6 +1,6 @@
 {
   "name": "chatgpt-ads-manager-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server for the ChatGPT Advertiser API — manage campaigns, ad groups, ads, assets, audiences, conversions, and insights from any MCP-capable agent.",
   "type": "module",
   "bin": {
@@ -48,11 +48,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/anomalyco/chatgpt-ads-manager-mcp.git"
+    "url": "git+https://github.com/niyogi/chatgpt-ads-manager-mcp.git"
   },
-  "homepage": "https://developers.openai.com/ads/api-overview",
+  "homepage": "https://github.com/niyogi/chatgpt-ads-manager-mcp#readme",
   "bugs": {
-    "url": "https://github.com/anomalyco/chatgpt-ads-manager-mcp/issues"
+    "url": "https://github.com/niyogi/chatgpt-ads-manager-mcp/issues"
   },
   "publishConfig": {
     "access": "public"
