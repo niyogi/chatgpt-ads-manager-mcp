@@ -1,8 +1,12 @@
 # ChatGPT Ads Manager MCP
 
+[![npm version](https://badge.fury.io/js/chatgpt-ads-manager-mcp.svg)](https://www.npmjs.com/package/chatgpt-ads-manager-mcp) [![npm downloads](https://img.shields.io/npm/dm/chatgpt-ads-manager-mcp.svg)](https://www.npmjs.com/package/chatgpt-ads-manager-mcp) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 Manage your **ChatGPT Advertiser campaigns** from any MCP-capable agent — Claude Desktop, Cursor, VS Code (Copilot), Windsurf, and more.
 
 One `npx` command. No app to install. Your API key stays local on your machine.
+
+> **Published to npm** — `npx -y chatgpt-ads-manager-mcp` pulls the pre-built package from [npmjs.com/package/chatgpt-ads-manager-mcp](https://www.npmjs.com/package/chatgpt-ads-manager-mcp) on demand. No `git clone`, no `npm run build` — just paste a config and restart your agent.
 
 - **Create campaigns → ad groups → ads** (or all three in one chain)
 - **Upload creatives**, manage **audiences**, configure **conversions & pixels**
@@ -41,7 +45,7 @@ Edit `claude_desktop_config.json`:
   "mcpServers": {
     "chatgpt-ads-manager": {
       "command": "npx",
-      "args": ["-y", "chatgpt-ads-manager-mcp"],
+      "args": ["-y", "chatgpt-ads-manager-mcp@latest"],
       "env": {
         "OPENAI_ADS_API_KEY": "sk-ads-...paste-your-key..."
       }
@@ -49,6 +53,8 @@ Edit `claude_desktop_config.json`:
   }
 }
 ```
+
+> Tip: `@latest` auto-updates on next agent restart. Pin to a version for reproducibility: `["-y", "chatgpt-ads-manager-mcp@0.1.0"]`. Bare `chatgpt-ads-manager-mcp` also resolves to `@latest`.
 
 Restart Claude Desktop.
 
@@ -61,7 +67,7 @@ Restart Claude Desktop.
   "mcpServers": {
     "chatgpt-ads-manager": {
       "command": "npx",
-      "args": ["-y", "chatgpt-ads-manager-mcp"],
+      "args": ["-y", "chatgpt-ads-manager-mcp@latest"],
       "env": {
         "OPENAI_ADS_API_KEY": "sk-ads-...paste-your-key..."
       }
@@ -82,7 +88,7 @@ Create `.vscode/mcp.json` in your workspace (note `servers` + `type: "stdio"` �
     "chatgpt-ads-manager": {
       "type": "stdio",
       "command": "npx",
-      "args": ["-y", "chatgpt-ads-manager-mcp"],
+      "args": ["-y", "chatgpt-ads-manager-mcp@latest"],
       "env": {
         "OPENAI_ADS_API_KEY": "sk-ads-...paste-your-key..."
       }
@@ -94,10 +100,10 @@ Create `.vscode/mcp.json` in your workspace (note `servers` + `type: "stdio"` �
 ### Claude Code (CLI)
 
 ```bash
-claude mcp add chatgpt-ads-manager -- npx -y chatgpt-ads-manager-mcp
+claude mcp add chatgpt-ads-manager -- npx -y chatgpt-ads-manager-mcp@latest
 # then in your config add env:
 # OPENAI_ADS_API_KEY=sk-ads-...
-# or: claude mcp add --env OPENAI_ADS_API_KEY=sk-ads-... chatgpt-ads-manager -- npx -y chatgpt-ads-manager-mcp
+# or: claude mcp add --env OPENAI_ADS_API_KEY=sk-ads-... chatgpt-ads-manager -- npx -y chatgpt-ads-manager-mcp@latest
 ```
 
 Scope it: `--scope project` for the repo, `--scope user` for global.
@@ -109,7 +115,7 @@ Scope it: `--scope project` for the repo, `--scope user` for global.
   "mcpServers": {
     "chatgpt-ads-manager": {
       "command": "npx",
-      "args": ["-y", "chatgpt-ads-manager-mcp"],
+      "args": ["-y", "chatgpt-ads-manager-mcp@latest"],
       "env": {
         "OPENAI_ADS_API_KEY": "sk-ads-...paste-your-key..."
       }
@@ -117,6 +123,8 @@ Scope it: `--scope project` for the repo, `--scope user` for global.
   }
 }
 ```
+
+> All examples now use `@latest` so `npx` fetches the newest published version from npm on next restart. Replace with `@0.1.0` to lock.
 
 Remote/HTTP clients: this package is **stdio via npx** today (no hosted URL). Wrap with `mcp-remote` if you need HTTP.
 
@@ -299,12 +307,13 @@ OPENAI_ADS_API_KEY=sk-ads-test OPENAI_ADS_BASE_URL=http://localhost:17892/v1 npx
 # Then via Inspector: initialize -> tools/list -> tools/call get_ad_account
 ```
 
-Publish:
+Publish (maintainers):
 
 ```bash
 npm run build
-npm pack --dry-run   # check 85 files, 36kB
-npm publish --access public   # requires npm provenance + 2FA
+npm pack --dry-run   # check 87 files, ~42kB
+npm publish --access public   # no --provenance for manual publish; use --provenance only in GitHub Actions OIDC
+# bump version first: npm version patch && npm publish --access public && git push --follow-tags
 ```
 
 API docs: `https://developers.openai.com/ads/api-overview` + `https://developers.openai.com/ads/openapi.json`.
