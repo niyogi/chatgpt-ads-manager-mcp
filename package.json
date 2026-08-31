@@ -1,0 +1,61 @@
+{
+  "name": "chatgpt-ads-manager-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for the ChatGPT Advertiser API — manage campaigns, ad groups, ads, assets, audiences, conversions, and insights from any MCP-capable agent.",
+  "type": "module",
+  "bin": {
+    "chatgpt-ads-manager-mcp": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "chatgpt",
+    "openai",
+    "ads",
+    "advertising",
+    "campaigns"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "inspect": "npx -y @modelcontextprotocol/inspector node dist/index.js",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anomalyco/chatgpt-ads-manager-mcp"
+  },
+  "homepage": "https://developers.openai.com/ads/api-overview",
+  "bugs": {
+    "url": "https://github.com/anomalyco/chatgpt-ads-manager-mcp/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  }
+}
